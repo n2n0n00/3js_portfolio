@@ -1,5 +1,6 @@
 import Loader from "./Loader";
 import Navbar from "./Navbar";
 import HomeInfo from "./HomeInfo";
-
-export { Loader, Navbar, HomeInfo };
+import Alert from "./Alert";
+import CTA from "./CTA";
+export { Loader, Navbar, HomeInfo, Alert, CTA };
