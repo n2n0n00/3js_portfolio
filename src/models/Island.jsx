@@ -1,14 +1,6 @@
-/**
- * IMPORTANT: Loading glTF models into a Three.js scene is a lot of work.
- * Before we can configure or animate our model’s meshes, we need to iterate through
- * each part of our model’s meshes and save them separately.
- *
- * But luckily there is an app that turns gltf or glb files into jsx components
- * For this model, visit https://gltf.pmnd.rs/
- * And get the code. And then add the rest of the things.
- * YOU DON'T HAVE TO WRITE EVERYTHING FROM SCRATCH
- */
-
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/no-unknown-property */
+/* eslint-disable react/prop-types */
 import { a } from "@react-spring/three";
 import { useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
@@ -16,13 +8,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 
 import islandScene from "../assets/3d/island.glb";
 
-export function Island({
-  isRotating,
-  setIsRotating,
-  setCurrentStage,
-  currentFocusPoint,
-  ...props
-}) {
+export function Island({ isRotating, setIsRotating, ...props }) {
   const islandRef = useRef();
   // Get access to the Three.js renderer and viewport
   const { gl, viewport } = useThree();
@@ -37,8 +23,8 @@ export function Island({
 
   // Handle pointer (mouse or touch) down event
   const handlePointerDown = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
+    event.stopPropagation(); // So that the mouse will only scroll without touching the rest of the items on screen
+    event.preventDefault(); // To prevent reload
     setIsRotating(true);
 
     // Calculate the clientX based on whether it's a touch event or a mouse event
@@ -176,7 +162,6 @@ export function Island({
   });
 
   return (
-    // {Island 3D model from: https://sketchfab.com/3d-models/foxs-islands-163b68e09fcc47618450150be7785907}
     <a.group ref={islandRef} {...props}>
       <mesh
         geometry={nodes.polySurface944_tree_body_0.geometry}
